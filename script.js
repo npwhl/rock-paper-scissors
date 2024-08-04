@@ -11,9 +11,9 @@ function getComputerChoice() {
 function getHumanChoice() {
     let selection = prompt("Enter your move ('Rock', 'Paper', 'Scissors').")
     selection = selection.toUpperCase();
-    return selection === "Rock" ? "Rock"
-        : selection === "Paper" ? "Paper"
-        : selection === "Scissors" ? "Scissors"
+    return selection === "ROCK" ? "Rock"
+        : selection === "PAPER" ? "Paper"
+        : selection === "SCISSORS" ? "Scissors"
         : "";
 } 
 
@@ -53,6 +53,7 @@ function playGame() {
     } else {
         console.log("Winner: DRAW.")
     }
+    console.log(`Score: You: ${humanScore}, Computer: ${computerScore}`)
 }
 
 playGame();
