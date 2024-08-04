@@ -3,17 +3,17 @@ let computerScore = 0;
 
 function getComputerChoice() {
     let selection = Math.round(Math.random()*3) + 1;
-    return selection === 1 ? "rock" 
-        : selection === 2 ? "paper"
-        : "scissors";
+    return selection === 1 ? "Rock" 
+        : selection === 2 ? "Paper"
+        : "Scissors";
 }
 
 function getHumanChoice() {
     let selection = prompt("Enter your move ('Rock', 'Paper', 'Scissors').")
     selection = selection.toUpperCase();
-    return selection === "ROCK" ? "rock"
-        : selection === "PAPER" ? "paper"
-        : selection === "SCISSORS" ? "scissors"
+    return selection === "Rock" ? "Rock"
+        : selection === "Paper" ? "Paper"
+        : selection === "Scissors" ? "Scissors"
         : "";
 } 
 
@@ -21,15 +21,16 @@ function playRound(humanChoice, computerChoice) {
     if(!humanChoice) {
         console.log("You made an invalid move, so the computer wins by default.");
         computerScore++;
+        return;
     }
     if(humanChoice === computerChoice) {
-        console.log(`You drew! The computer also played ${humanChoice}`);
+        console.log(`You drew! The computer also played ${humanChoice}.`);
         return;
     }
 
-    let win = humanChoice === "paper" && computerChoice === "rock" ? "win" 
-        : humanChoice === "rock" && computerChoice === "scissors" ? "win"
-        : humanChoice === "scissors" && computerChoice === "paper" ? "win" 
+    let win = humanChoice === "Paper" && computerChoice === "Rock" ? "win" 
+        : humanChoice === "Rock" && computerChoice === "Scissors" ? "win"
+        : humanChoice === "Scissors" && computerChoice === "Paper" ? "win" 
         : "";
 
     if(win) {
@@ -43,7 +44,7 @@ function playRound(humanChoice, computerChoice) {
 
 function playGame() {
     for(let gameCount = 0; gameCount < 5; gameCount++) {
-        playRound();
+        playRound(getHumanChoice(), getComputerChoice());
     }
     if(humanScore > computerScore) {
         console.log("Winner: YOU!");
