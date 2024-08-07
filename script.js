@@ -17,14 +17,17 @@ function getHumanChoice() {
         : "";
 } 
 
+const results = document.querySelector("div");
+
 function playRound(humanChoice, computerChoice) {
+    const result = document.createElement("p");
     if(!humanChoice) {
-        console.log("You made an invalid move, so the computer wins by default.");
+        result.textContent = "You made an invalid move, so the computer wins by default.";
         computerScore++;
         return;
     }
     if(humanChoice === computerChoice) {
-        console.log(`You drew! The computer also played ${humanChoice}.`);
+        result.textContent = `You drew! The computer also played ${humanChoice}.`;
         return;
     }
 
@@ -34,26 +37,37 @@ function playRound(humanChoice, computerChoice) {
         : "";
 
     if(win) {
-        console.log(`You won! ${humanChoice} beats ${computerChoice}.`) 
+        result.textContent = `You won! ${humanChoice} beats ${computerChoice}.`;
         humanScore++;
     } else {
-        console.log (`You lost! ${computerChoice} beats ${humanChoice}.`)
+        result.textContent = `You lost! ${computerChoice} beats ${humanChoice}.`;
         computerScore++;
     }
+    results.appendChild(result);
 }
 
-function playGame() {
-    for(let gameCount = 0; gameCount < 5; gameCount++) {
-        playRound(getHumanChoice(), getComputerChoice());
-    }
-    if(humanScore > computerScore) {
-        console.log("Winner: YOU!");
-    } else if(humanScore < computerScore) {
-        console.log("Winner: COMPUTER!");
-    } else {
-        console.log("Winner: DRAW.")
-    }
-    console.log(`Score: You: ${humanScore}, Computer: ${computerScore}`)
-}
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playRound(button.className, getComputerChoice());
+    });
+});
 
-playGame();
+const score = document.querySelector("h2");
+h2.textContent = "You: 0, Computer: 0"
+
+
+// function playGame() {
+//     for(let gameCount = 0; gameCount < 5; gameCount++) {
+//         playRound(getHumanChoice(), getComputerChoice());
+//     }
+//     if(humanScore > computerScore) {
+//         console.log("Winner: YOU!");
+//     } else if(humanScore < computerScore) {
+//         console.log("Winner: COMPUTER!");
+//     } else {
+//         console.log("Winner: DRAW.")
+//     }
+//     console.log(`Score: You: ${humanScore}, Computer: ${computerScore}`)
+// }
+// playGame();
