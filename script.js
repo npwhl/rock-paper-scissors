@@ -25,6 +25,7 @@ function playRound(humanChoice, computerChoice) {
     const result = document.createElement("p");
     if(humanChoice === computerChoice) {
         result.textContent = `You drew! The computer also played ${humanChoice}.`;
+        results.appendChild(result);
         return;
     }
 
