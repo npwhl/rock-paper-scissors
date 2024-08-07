@@ -18,14 +18,11 @@ function getHumanChoice() {
 } 
 
 const results = document.querySelector("div");
+const score = document.querySelector("h3");
+score.textContent = `You: ${humanScore}, Computer: ${computerScore}`;
 
 function playRound(humanChoice, computerChoice) {
     const result = document.createElement("p");
-    if(!humanChoice) {
-        result.textContent = "You made an invalid move, so the computer wins by default.";
-        computerScore++;
-        return;
-    }
     if(humanChoice === computerChoice) {
         result.textContent = `You drew! The computer also played ${humanChoice}.`;
         return;
@@ -43,6 +40,7 @@ function playRound(humanChoice, computerChoice) {
         result.textContent = `You lost! ${computerChoice} beats ${humanChoice}.`;
         computerScore++;
     }
+    score.textContent = `You: ${humanScore}, Computer: ${computerScore}`; // Refresh
     results.appendChild(result);
 }
 
@@ -53,8 +51,6 @@ buttons.forEach((button) => {
     });
 });
 
-const score = document.querySelector("h2");
-h2.textContent = "You: 0, Computer: 0"
 
 
 // function playGame() {
