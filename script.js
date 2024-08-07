@@ -43,6 +43,7 @@ function playRound(humanChoice, computerChoice) {
     }
     score.textContent = `You: ${humanScore}, Computer: ${computerScore}`; // Refresh
     results.appendChild(result);
+    winCheck();
 }
 
 const buttons = document.querySelectorAll("button");
@@ -52,19 +53,14 @@ buttons.forEach((button) => {
     });
 });
 
-
-
-// function playGame() {
-//     for(let gameCount = 0; gameCount < 5; gameCount++) {
-//         playRound(getHumanChoice(), getComputerChoice());
-//     }
-//     if(humanScore > computerScore) {
-//         console.log("Winner: YOU!");
-//     } else if(humanScore < computerScore) {
-//         console.log("Winner: COMPUTER!");
-//     } else {
-//         console.log("Winner: DRAW.")
-//     }
-//     console.log(`Score: You: ${humanScore}, Computer: ${computerScore}`)
-// }
-// playGame();
+function winCheck() {
+    if(humanScore === 5 || computerScore === 5) {
+        const winner = document.createElement("h3");
+        humanScore > computerScore ? winner.textContent = "You beat the computer!"
+            : winner.textContent  = "You lost to the computer!";
+        results.appendChild(winner);
+        buttons.forEach((button) => {
+            button.disabled = "true";
+        })
+    }
+}
